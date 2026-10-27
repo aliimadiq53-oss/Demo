@@ -1,25 +1,6 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>نسيم البصرة الذهبية — نسخة تجريبية</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-body{margin:0;min-height:100vh;background:#000710;color:#fff;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:24px 16px;box-sizing:border-box}
-main{width:100%;max-width:420px;display:flex;flex-direction:column;gap:14px}
-img{width:44px;height:74px;object-fit:contain}
-h1{margin:0;font-size:28px;line-height:1.25}p{margin:0;color:#b9bbc6;font-size:14px;line-height:1.7}
-.tag{align-self:flex-start;font-size:12px;font-weight:700;color:#fbbf24;border:1px solid rgba(251,191,36,.5);border-radius:8px;padding:4px 10px}
-a.c{display:flex;flex-direction:column;gap:4px;padding:18px;border-radius:16px;background:#15191e;color:#fff;text-decoration:none;border:1px solid #22262d}
-a.c b{font-size:17px}a.c span{font-size:13px;color:#b9bbc6}a.c.main{background:#FE6E00;color:#000710;border:0}a.c.main span{color:#33270a}
-small{color:#8b8d98;font-size:12px;line-height:1.6}
-</style></head><body><main>
-<img src="assets/90cb351a7cc1bb14fe454177dc17714e.png" alt="شعار نسيم البصرة الذهبية">
-<span class="tag">نسخة تجريبية</span>
-<h1>متجر نسيم البصرة الذهبية</h1>
-<p>تجربة المتجر الإلكتروني الجديد للأجهزة المنزلية — على الهاتف يفتح بتصميم الموبايل، وعلى الحاسبة يفتح بتصميم الويب الكامل.</p>
-<a class="c main" href="Main.dc.html"><b>المتجر</b><span>تصفح المنتجات، السلة، الدفع، حساب الزبون</span></a>
-<a class="c" href="Web.dc.html?web=1"><b>نسخة الويب (الحاسبة)</b><span>تصميم يملأ الشاشة: قائمة أقسام، فلاتر جانبية، 5 منتجات بالصف</span></a>
-<a class="c" href="Main.dc.html?phone=1"><b>نسخة الهاتف</b><span>تصميم الموبايل كما يظهر على التليفون</span></a>
-<a class="c" href="Admin.dc.html"><b>لوحة الإدارة</b><span>المخزن، الطلبات، الزبائن، الكوبونات، الماركات</span></a>
-<a class="c" href="Dealer.dc.html"><b>بوابة التجار</b><span>للتجربة: اسم المستخدم tajer وكلمة المرور 1234</span></a>
-<small>حساب زبون تجريبي: الهاتف 0770 000 0011 وكلمة المرور 1234 · الدفع تجريبي ولا يُسحب أي مبلغ.</small>
-</main></body></html>
+<title>متجر نسيم البصرة الذهبية</title>
+<script>/* one link: computers and tablets get the web store, phones get the phone store */
+location.replace((window.innerWidth >= 1024 || (window.innerWidth >= 768 && window.innerHeight >= 600)) ? 'Web.dc.html' : 'Main.dc.html');</script>
+<style>body{margin:0;background:#fff}</style></head><body></body></html>

@@ -4,12 +4,16 @@
 <meta charset="utf-8">
 <title>متجر نسيم البصرة</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>/* computers get the full-screen web store */ if (window.innerWidth >= 1024 && !/[?&]phone=1/.test(location.search)) location.replace('Web.dc.html');</script>
+<script>if ((window.innerWidth >= 1024 || (window.innerWidth >= 768 && window.innerHeight >= 600)) && !/[?&]phone=1/.test(location.search)) location.replace('Web.dc.html');</script>
 <style>
 html,body{margin:0;background:#ffffff;overflow-x:hidden}
 /* fill the phone screen: the design is drawn at 390x844, here it stretches to any phone width */
 div[style*="width: 390px"][style*="height: 844px"]{width:100% !important;max-width:560px !important;height:100vh !important;height:100dvh !important;margin:0 auto !important}
 @media (min-width:600px){html,body{background:#d9dae1}div[style*="width: 390px"][style*="height: 844px"]{max-width:430px !important;box-shadow:0 0 0 1px #c9cbd2}}
+/* phone turned sideways: fill the whole width, 4 products per row */
+@media (min-width:600px) and (max-height:600px){html,body{background:#ffffff}div[style*="width: 390px"][style*="height: 844px"]{max-width:none !important;box-shadow:none !important}
+div[style*="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px"],div[style*="grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 12px"]{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+button[style*="aspect-ratio: 1 / 1; border: none; border-radius: 22px"]{max-width:460px !important;margin-left:auto !important;margin-right:auto !important}}
 </style>
 <script src="./support.js"></script>
 </head>

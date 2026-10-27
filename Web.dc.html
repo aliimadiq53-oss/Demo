@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>/* phones and small tablets get the phone store */ if (window.innerWidth < 1024 && !/[?&]web=1/.test(location.search)) location.replace('Main.dc.html');</script>
+<script>if (!(window.innerWidth >= 1024 || (window.innerWidth >= 768 && window.innerHeight >= 600)) && !/[?&]web=1/.test(location.search)) location.replace('Main.dc.html');</script>
 <style>html,body{margin:0;background:#ffffff}</style>
 <title>متجر نسيم البصرة — الويب</title>
 <script src="./support.js"></script>
@@ -28,7 +28,13 @@ input{font-family:inherit}
 html,body{height:100%}
 .wc{width:100%;max-width:1480px;margin-left:auto;margin-right:auto;padding-left:40px;padding-right:40px;box-sizing:border-box}
 .wgrid{grid-template-columns:repeat(5,minmax(0,1fr))}
+.wcat{grid-template-columns:272px minmax(0,1fr)}
+.wnew{grid-template-columns:repeat(10,minmax(0,1fr))}
+.wfbtn{display:none}
 @media (max-width:1360px){.wgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.wc{padding-left:28px;padding-right:28px}}
+/* tablets: filters move into a button, fewer columns */
+@media (max-width:1100px){.wcat{grid-template-columns:minmax(0,1fr)}.wcat>aside{display:none!important}.wfbtn{display:flex}.wsortl{display:none}.wnew{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:20px}.wc{padding-left:20px;padding-right:20px}a.whov{display:none!important}}
+@media (max-width:900px){.wgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .mm{position:static}
 .mmp{display:none}
 .mm:hover .mmp{display:block}
@@ -382,7 +388,7 @@ html,body{height:100%}
         <sc-if value="{{showOffers}}" hint-placeholder-val="{{true}}">
           <div class="wc" style="display: flex; flex-direction: column; gap: 18px">
             <h2 style="margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.02em">وصل حديثًا</h2>
-            <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 12px">
+            <div class="wnew" style="display: grid; gap: 12px">
               <sc-for list="{{offers}}" as="o" hint-placeholder-count="10">
                 <button onClick="{{o.open}}" aria-label="{{o.name}}" class="wlift" style="min-width: 0; border: none; background: none; padding: 0; color: #000000; display: flex; flex-direction: column; align-items: center; gap: 6px">
                   <span style="position: relative; width: 100px; height: 100px; border-radius: 50px; box-sizing: border-box; padding: 3px; background: conic-gradient(from 210deg, #fe6e00, #fbbf24, #fe6e00); display: flex">
@@ -405,7 +411,7 @@ html,body{height:100%}
         </sc-if>
 
         <!-- product catalogue: filters sidebar + grid -->
-        <div class="wc" style="display: grid; grid-template-columns: 272px minmax(0, 1fr); gap: 32px; align-items: start">
+        <div class="wc wcat" style="display: grid; gap: 32px; align-items: start">
           <aside aria-label="الفلاتر" style="position: sticky; top: 16px; display: flex; flex-direction: column; gap: 22px; padding: 20px; border: 1px solid #ececf1; border-radius: 18px; max-height: calc(100vh - 220px); overflow-y: auto; scrollbar-width: thin">
             <div style="display: flex; align-items: center; justify-content: space-between">
               <h2 style="margin: 0; font-size: 17px; font-weight: 700">الفلاتر</h2>
@@ -487,7 +493,11 @@ html,body{height:100%}
                 <span style="font-size: 13px; color: #6f737b">{{gridCount}}</span>
               </div>
               <div style="display: flex; align-items: center; gap: 6px">
-                <span style="font-size: 13px; color: #6f737b">الترتيب:</span>
+                <button onClick="{{openF}}" class="wfbtn" style="height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid {{fBtn.border}}; background: {{fBtn.bg}}; color: {{fBtn.fg}}; font-size: 13px; font-weight: 600; align-items: center; gap: 6px">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg>
+                  {{fBtn.label}}
+                </button>
+                <span class="wsortl" style="font-size: 13px; color: #6f737b">الترتيب:</span>
                 <sc-for list="{{sortOpts}}" as="o" hint-placeholder-count="4">
                   <button onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-size: 13px; font-weight: 500">{{o.label}}</button>
                 </sc-for>
