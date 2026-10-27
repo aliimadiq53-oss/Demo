@@ -4,7 +4,12 @@
 <meta charset="utf-8">
 <title>متجر نسيم البصرة</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>html,body{background:#d9dae1}body>*{margin:0 auto}</style>
+<style>
+html,body{margin:0;background:#ffffff;overflow-x:hidden}
+/* fill the phone screen: the design is drawn at 390x844, here it stretches to any phone width */
+div[style*="width: 390px"][style*="height: 844px"]{width:100% !important;max-width:560px !important;height:100vh !important;height:100dvh !important;margin:0 auto !important}
+@media (min-width:600px){html,body{background:#d9dae1}div[style*="width: 390px"][style*="height: 844px"]{max-width:430px !important;box-shadow:0 0 0 1px #c9cbd2}}
+</style>
 <script src="./support.js"></script>
 </head>
 <body>
