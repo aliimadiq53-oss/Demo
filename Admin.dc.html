@@ -9,6 +9,27 @@ html,body{margin:0;background:#ffffff;overflow-x:hidden}
 /* fill the phone screen: the design is drawn at 390x844, here it stretches to any phone width */
 div[style*="width: 390px"][style*="height: 844px"]{width:100% !important;max-width:560px !important;height:100vh !important;height:100dvh !important;margin:0 auto !important}
 @media (min-width:600px){html,body{background:#d9dae1}div[style*="width: 390px"][style*="height: 844px"]{max-width:430px !important;box-shadow:0 0 0 1px #c9cbd2}}
+/* ---------- computer layout ---------- */
+@media (min-width:1024px){
+html,body{background:#f3f3f7 !important}
+div.adm-root[style*="width: 390px"][style*="height: 844px"]{width:100% !important;max-width:none !important;height:100vh !important;box-shadow:none !important;display:grid !important;grid-template-columns:250px minmax(0,1fr);grid-template-rows:100%}
+.adm-head{padding:22px 14px !important;gap:26px !important;overflow-y:auto;justify-content:flex-start !important}
+.adm-tabs{flex-direction:column !important;overflow:visible !important;gap:2px !important}
+.adm-tabs button{height:44px !important;border-bottom:none !important;border-radius:10px !important;text-align:right;padding:0 14px !important;font-size:14px !important;color:#b9bbc6 !important}
+.adm-tabs button[aria-selected="true"]{background:rgba(255,255,255,.09) !important;color:#ffffff !important;box-shadow:inset -3px 0 0 #FE6E00}
+.adm-tabs button:hover{background:rgba(255,255,255,.05) !important;color:#ffffff !important}
+.adm-main{padding:28px 36px 56px !important;scrollbar-width:thin !important}
+.adm-sec{display:grid !important;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));align-items:start;gap:14px !important;max-width:1560px;margin:0 auto}
+.adm-sec>*{grid-column:1/-1}
+.adm-sec>.adm-card{grid-column:auto}
+.adm-ov{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+.adm-ov>*:nth-last-child(-n+2){grid-column:auto}
+.adm-stats{grid-template-columns:repeat(5,minmax(0,1fr)) !important}
+.adm-stats>*{grid-column:auto !important}
+[role="status"][style*="position: absolute"]{left:50% !important;right:auto !important;transform:translateX(-50%);width:440px;bottom:24px !important}
+[style*="inset: 0"][style*="justify-content: flex-end"]{justify-content:center !important;align-items:center !important;padding:32px}
+[style*="border-radius: 22px 22px 0"]{width:100%;max-width:700px;max-height:88vh !important;border-radius:22px !important}
+}
 </style>
 <script src="./support.js"></script>
 </head>
@@ -31,10 +52,10 @@ input,select{font-family:inherit}
 .sh3{background-image:url(assets/c0cc883c7b6789f7a79e54275e4118c6.webp)}
 </style>
 </helmet>
-<div dir="rtl" style="position: relative; width: 390px; height: 844px; display: flex; flex-direction: column; background: #f3f3f7; color: #000000; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; overflow: hidden; letter-spacing: -0.01em">
+<div class="adm-root" dir="rtl" style="position: relative; width: 390px; height: 844px; display: flex; flex-direction: column; background: #f3f3f7; color: #000000; font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif; overflow: hidden; letter-spacing: -0.01em">
 
   <!-- header -->
-  <div style="flex: none; background: #000710; color: #ffffff; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 14px">
+  <div class="adm-head" style="flex: none; background: #000710; color: #ffffff; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 14px">
     <div style="display: flex; align-items: center; justify-content: space-between">
       <div style="display: flex; align-items: center; gap: 10px">
         <img src="assets/90cb351a7cc1bb14fe454177dc17714e.png" alt="شعار نسيم البصرة الذهبية" style="width: 24px; height: 40px; object-fit: contain">
@@ -45,18 +66,18 @@ input,select{font-family:inherit}
       </div>
       <span style="font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 6px; background: rgba(251,191,36,0.16); color: #fbbf24">صاحب المتجر</span>
     </div>
-    <div class="nb-scroll" role="tablist" style="display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none">
+    <div class="adm-tabs nb-scroll" role="tablist" style="display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none">
       <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
         <button role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="flex: none; height: 44px; padding: 0 12px; border: none; background: none; color: {{t.fg}}; font-size: 13px; font-weight: 600; border-bottom: 2px solid {{t.line}}; white-space: nowrap">{{t.label}}</button>
       </sc-for>
     </div>
   </div>
 
-  <div class="nb-scroll" style="flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px; box-sizing: border-box">
+  <div class="adm-main nb-scroll" style="flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px; box-sizing: border-box">
 
     <!-- ============ OVERVIEW ============ -->
     <sc-if value="{{isOverview}}" hint-placeholder-val="{{true}}">
-      <div style="display: flex; flex-direction: column; gap: 16px">
+      <div class="adm-sec adm-ov" style="display: flex; flex-direction: column; gap: 16px">
         <span style="font-size: 12px; color: #6f737b">المنتجات والتجار من قاعدة بياناتك (نسخة للعرض فقط) · الطلبات تجريبية</span>
         <div style="background: #000710; color: #ffffff; border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center">
           <span style="display: flex; flex-direction: column; gap: 4px">
@@ -65,7 +86,7 @@ input,select{font-family:inherit}
           </span>
           <span style="font-size: 13px; color: #fbbf24; font-weight: 600">في {{catCount}} قسم</span>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <div class="adm-stats" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
           <div style="background: #ffffff; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
             <span style="font-size: 12px; color: #60646c">طلبات جديدة</span>
             <span style="font-size: 26px; font-weight: 700; letter-spacing: -0.02em">{{newCount}}</span>
@@ -118,7 +139,7 @@ input,select{font-family:inherit}
 
     <!-- ============ STOCK ============ -->
     <sc-if value="{{isStock}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
           <button onClick="{{newProduct}}" style="height: 56px; border: none; border-radius: 12px; background: {{accent}}; color: #000000; font-size: 14px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px">+ منتج واحد<span style="font-size: 11px; font-weight: 500">بمقاساته وألوانه</span></button>
           <button onClick="{{newBatch}}" style="height: 56px; border: none; border-radius: 12px; background: #000000; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px">+ عدة منتجات<span style="font-size: 11px; font-weight: 500; color: #fbbf24">صور أو قائمة دفعة واحدة</span></button>
@@ -129,7 +150,7 @@ input,select{font-family:inherit}
         </label>
         <span style="font-size: 12px; color: #6f737b">{{stockCount}}</span>
         <sc-for list="{{stock}}" as="it" hint-placeholder-count="4">
-          <div style="background: #ffffff; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+          <div class="adm-card" style="background: #ffffff; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
             <div style="display: flex; gap: 12px; align-items: center">
               <span style="flex: none; width: 52px; height: 52px; border-radius: 10px; background: #f3f3f7; display: flex; align-items: center; justify-content: center">
                 <sc-if value="{{it.hasPhoto}}" hint-placeholder-val="{{true}}">
@@ -176,12 +197,12 @@ input,select{font-family:inherit}
 
     <!-- ============ SECTIONS ============ -->
     <sc-if value="{{isCats}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <button onClick="{{newCat}}" style="height: 48px; border: none; border-radius: 12px; background: {{accent}}; color: #000000; font-size: 15px; font-weight: 700">+ قسم جديد</button>
         <p style="margin: 0; font-size: 12px; line-height: 1.7; color: #60646c">رتّب الأقسام بالأسهم كما تريدها في المتجر. لكل قسم صورته ووحدة القياس الخاصة به، فيظهر للزبون «16 قدم» في الثلاجات و«55 بوصة» في الشاشات.</p>
         <span style="font-size: 12px; color: #6f737b">{{catSummary}}</span>
         <sc-for list="{{catRows}}" as="cr" hint-placeholder-count="5">
-          <div style="background: #ffffff; border-radius: 14px; padding: 10px; display: flex; align-items: center; gap: 10px">
+          <div class="adm-card" style="background: #ffffff; border-radius: 14px; padding: 10px; display: flex; align-items: center; gap: 10px">
             <div style="flex: none; display: flex; flex-direction: column; gap: 2px">
               <button onClick="{{cr.up}}" aria-label="تحريك القسم للأعلى" style="width: 30px; height: 26px; border: none; border-radius: 7px; background: #f3f3f7; color: #000000; opacity: {{cr.upOp}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg></button>
               <button onClick="{{cr.down}}" aria-label="تحريك القسم للأسفل" style="width: 30px; height: 26px; border: none; border-radius: 7px; background: #f3f3f7; color: #000000; opacity: {{cr.downOp}}; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
@@ -210,12 +231,12 @@ input,select{font-family:inherit}
 
     <!-- ============ BRANDS ============ -->
     <sc-if value="{{isBrands}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <button onClick="{{newBrand}}" style="height: 48px; border: none; border-radius: 12px; background: {{accent}}; color: #000000; font-size: 15px; font-weight: 700">+ ماركة جديدة</button>
         <p style="margin: 0; font-size: 12px; line-height: 1.7; color: #60646c">ارفع شعار كل ماركة (PNG بخلفية شفافة أفضل). يظهر الشعار في «تسوّق حسب الماركة» وبطاقات الوكالات الحصرية وصفحة الماركة. الماركة بدون شعار يظهر اسمها مكتوبًا.</p>
         <span style="font-size: 12px; color: #6f737b">{{brSummary}}</span>
         <sc-for list="{{brRows}}" as="br" hint-placeholder-count="5">
-          <div style="background: #ffffff; border-radius: 14px; padding: 10px; display: flex; align-items: center; gap: 10px; opacity: {{br.op}}">
+          <div class="adm-card" style="background: #ffffff; border-radius: 14px; padding: 10px; display: flex; align-items: center; gap: 10px; opacity: {{br.op}}">
             <div style="flex: none; display: flex; flex-direction: column; gap: 2px">
               <button onClick="{{br.up}}" aria-label="تحريك للأعلى" style="width: 28px; height: 24px; border: none; border-radius: 7px; background: #f3f3f7; color: #000000; opacity: {{br.upOp}}; display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"></path></svg></button>
               <button onClick="{{br.down}}" aria-label="تحريك للأسفل" style="width: 28px; height: 24px; border: none; border-radius: 7px; background: #f3f3f7; color: #000000; opacity: {{br.downOp}}; display: flex; align-items: center; justify-content: center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></button>
@@ -240,7 +261,7 @@ input,select{font-family:inherit}
 
     <!-- ============ COUPONS ============ -->
     <sc-if value="{{isCoupons}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
           <div style="background: #000710; color: #ffffff; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #b9bbc6">فعّالة الآن</span><b style="font-size: 20px; color: #fbbf24">{{cpStat.live}}</b></div>
           <div style="background: #ffffff; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #60646c">مجدولة</span><b style="font-size: 20px">{{cpStat.sched}}</b></div>
@@ -268,7 +289,7 @@ input,select{font-family:inherit}
           </sc-for>
         </div>
         <sc-for list="{{couponList}}" as="cp" hint-placeholder-count="3">
-          <div style="display: flex; border-radius: 14px; overflow: hidden; background: #ffffff; opacity: {{cp.op}}">
+          <div class="adm-card" style="display: flex; border-radius: 14px; overflow: hidden; background: #ffffff; opacity: {{cp.op}}">
             <div style="flex: none; width: 78px; background: {{cp.bg}}; color: {{cp.fg}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 10px 4px; text-align: center"><b style="font-size: 18px; line-height: 1.1">{{cp.big}}</b><span style="font-size: 10px; font-weight: 600">{{cp.unit}}</span></div>
             <div style="flex: 1; min-width: 0; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px">
               <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
@@ -296,7 +317,7 @@ input,select{font-family:inherit}
 
     <!-- ============ ORDERS ============ -->
     <sc-if value="{{isOrders}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: #e4e5ea">
           <sc-for list="{{kindFilters}}" as="kf" hint-placeholder-count="3">
             <button onClick="{{kf.pick}}" aria-pressed="{{kf.pressed}}" style="height: 38px; border: none; border-radius: 9px; background: {{kf.bg}}; color: #000000; font-size: 12px; font-weight: {{kf.fw}}; box-shadow: {{kf.shadow}}">{{kf.label}}</button>
@@ -308,7 +329,7 @@ input,select{font-family:inherit}
           </sc-for>
         </div>
         <sc-for list="{{orders}}" as="o" hint-placeholder-count="3">
-          <div style="background: #ffffff; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+          <div class="adm-card" style="background: #ffffff; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
             <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
               <span style="display: flex; align-items: center; gap: 8px; min-width: 0">
                 <span style="font-size: 14px; font-weight: 700">#{{o.no}}</span>
@@ -349,7 +370,7 @@ input,select{font-family:inherit}
 
     <!-- ============ CUSTOMERS ============ -->
     <sc-if value="{{isCustomers}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
           <div style="background: #000710; color: #ffffff; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #b9bbc6">حسابات مسجلة</span><span style="font-size: 20px; font-weight: 700">{{custCount}}</span></div>
           <div style="background: #ffffff; border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #60646c">طلبوا مرة على الأقل</span><span style="font-size: 20px; font-weight: 700">{{custBuyers}}</span></div>
@@ -364,7 +385,7 @@ input,select{font-family:inherit}
           </sc-for>
         </div>
         <sc-for list="{{customers}}" as="cu" hint-placeholder-count="4">
-          <button onClick="{{cu.open}}" style="background: #ffffff; border: none; border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 12px; color: #000000; text-align: right; opacity: {{cu.op}}">
+          <button class="adm-card" onClick="{{cu.open}}" style="background: #ffffff; border: none; border-radius: 14px; padding: 12px; display: flex; align-items: center; gap: 12px; color: #000000; text-align: right; opacity: {{cu.op}}">
             <span style="flex: none; width: 42px; height: 42px; border-radius: 21px; background: #f3f3f7; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700">{{cu.initial}}</span>
             <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
               <span style="display: flex; align-items: center; gap: 6px"><span style="font-size: 14px; font-weight: 600">{{cu.name}}</span>
@@ -443,7 +464,7 @@ input,select{font-family:inherit}
 
     <!-- ============ DEALERS ============ -->
     <sc-if value="{{isDealers}}" hint-placeholder-val="{{false}}">
-      <div style="display: flex; flex-direction: column; gap: 12px">
+      <div class="adm-sec" style="display: flex; flex-direction: column; gap: 12px">
         <p style="margin: 0; font-size: 13px; line-height: 1.7; color: #60646c">أنشئ لكل تاجر اسم مستخدم وكلمة مرور، فيدخل بها إلى «بوابة التجار» ويرى أسعار الجملة ويطلب مباشرة. إطفاء الحساب يمنعه من الدخول فورًا.</p>
         <sc-if value="{{hasCred}}" hint-placeholder-val="{{false}}">
           <div style="border-radius: 14px; background: #000710; color: #ffffff; padding: 16px; display: flex; flex-direction: column; gap: 10px">
@@ -466,7 +487,7 @@ input,select{font-family:inherit}
         </label>
         <span style="font-size: 12px; color: #6f737b">{{dealerCount}}</span>
         <sc-for list="{{dealers}}" as="dl" hint-placeholder-count="3">
-          <div style="background: #ffffff; border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px">
+          <div class="adm-card" style="background: #ffffff; border-radius: 12px; padding: 14px; display: flex; align-items: center; gap: 12px">
             <span style="flex: none; width: 40px; height: 40px; border-radius: 20px; background: #f3f3f7; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700">{{dl.initial}}</span>
             <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
               <span style="font-size: 14px; font-weight: 600">{{dl.name}}</span>
