@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>متجر نسيم البصرة الذهبية</title>
-<script>/* one link: computers and tablets get the web store, phones get the phone store */
-location.replace((window.innerWidth >= 1024 || (window.innerWidth >= 768 && window.innerHeight >= 600)) ? 'Web.dc.html' : 'Main.dc.html');</script>
-<style>body{margin:0;background:#fff}</style></head><body></body></html>
+<style>html,body{margin:0;background:#ffffff}</style>
+<script>
+/* One address for everyone: the same page loads the computer design on computers and tablets,
+   and the phone design on phones. The address in the bar never changes. */
+(function () {
+  function big() { return window.innerWidth >= 1024 || (window.innerWidth >= 768 && window.innerHeight >= 600); }
+  var mode = big();
+  var watch = '<script>(function(){var m=' + mode + ';var t;function b(){return innerWidth>=1024||(innerWidth>=768&&innerHeight>=600);}addEventListener("resize",function(){clearTimeout(t);t=setTimeout(function(){if(b()!==m)location.reload();},400);});})();<\/script>';
+  fetch(mode ? 'Web.dc.html' : 'Main.dc.html', { cache: 'no-cache' })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var at = html.lastIndexOf('</body>'); if (at > 0) html = html.slice(0, at) + watch + html.slice(at);
+      document.open(); document.write(html); document.close();
+    });
+})();
+</script>
+</head><body></body></html>
